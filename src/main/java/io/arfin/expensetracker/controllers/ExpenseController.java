@@ -3,6 +3,7 @@ package io.arfin.expensetracker.controllers;
 import io.arfin.expensetracker.entities.Expense;
 import io.arfin.expensetracker.services.ExpenseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,11 +25,13 @@ public class ExpenseController {
     }
 
     @DeleteMapping("/expenses")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void deleteExpense(@RequestParam(name = "id") Long id){
         expenseService.deleteExpense(id);
     }
 
     @PostMapping("/expenses")
+    @ResponseStatus(value = HttpStatus.CREATED)
     public Expense saveExpense(@RequestBody Expense expense){
         return expenseService.saveExpense(expense);
     }
