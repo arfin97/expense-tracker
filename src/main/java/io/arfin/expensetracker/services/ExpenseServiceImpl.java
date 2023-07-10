@@ -1,6 +1,7 @@
 package io.arfin.expensetracker.services;
 
 import io.arfin.expensetracker.entities.Expense;
+import io.arfin.expensetracker.exceptions.ResourceNotFoundException;
 import io.arfin.expensetracker.repositories.ExpenseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,7 +28,7 @@ public class ExpenseServiceImpl implements ExpenseService {
             return expense.get();
         }
         else {
-            throw new RuntimeException("Expense not found with id: " + id);
+            throw new ResourceNotFoundException("Expense not found with id: " + id);
         }
     }
 
@@ -38,7 +39,7 @@ public class ExpenseServiceImpl implements ExpenseService {
             expenseRepository.deleteById(id);
         }
         else{
-            throw new RuntimeException("Expense not found with id: " + id);
+            throw new ResourceNotFoundException("Expense not found with id: " + id);
         }
     }
 
